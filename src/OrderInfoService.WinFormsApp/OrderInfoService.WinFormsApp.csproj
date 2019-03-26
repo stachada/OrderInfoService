@@ -1,0 +1,236 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{7A26C2D0-3644-4322-84B4-67FC923C88A2}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>OrderInfoService.WinFormsApp</RootNamespace>
+    <AssemblyName>OrderInfoService.WinFormsApp</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Autofac, Version=4.9.2.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Autofac.4.9.2\lib\net45\Autofac.dll</HintPath>
+    </Reference>
+    <Reference Include="CsvHelper, Version=12.0.0.0, Culture=neutral, PublicKeyToken=8c4959082be5c823, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\CsvHelper.12.1.2\lib\net45\CsvHelper.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Newtonsoft.Json.12.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.ValueTuple, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.ValueTuple.4.4.0\lib\net461\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App\Dtos\OrderDto.cs" />
+    <Compile Include="App\Dtos\OrderItemDto.cs" />
+    <Compile Include="App\Dtos\OrderQuantityByNameDto.cs" />
+    <Compile Include="App\Dtos\ParentOrderDto.cs" />
+    <Compile Include="Core\Entities\FlatOrder.cs" />
+    <Compile Include="Core\Entities\OrderItem.cs" />
+    <Compile Include="Core\Interfaces\IOrdersQueries.cs" />
+    <Compile Include="App\OrdersQueries.cs" />
+    <Compile Include="Core\Entities\Order.cs" />
+    <Compile Include="Infrastructure\Helpers\CastingHelpers.cs" />
+    <Compile Include="Infrastructure\Helpers\OrderConverters.cs" />
+    <Compile Include="Infrastructure\Helpers\ParsingHelpers.cs" />
+    <Compile Include="Infrastructure\Helpers\PropertyComparer.cs" />
+    <Compile Include="Infrastructure\Helpers\SortableBindingList.cs" />
+    <Compile Include="Infrastructure\InMemoryDb\IOrdersInMemoryDb.cs" />
+    <Compile Include="Infrastructure\InMemoryDb\OrdersInMemoryDb.cs" />
+    <Compile Include="Infrastructure\Read\CsvOrdersFileReader.cs" />
+    <Compile Include="Infrastructure\Read\IOrdersFileReader.cs" />
+    <Compile Include="Infrastructure\Read\IOrdersReader.cs" />
+    <Compile Include="Infrastructure\Read\JsonOrdersFileReader.cs" />
+    <Compile Include="Infrastructure\Read\OrdersReader.cs" />
+    <Compile Include="Infrastructure\Read\ReaderState.cs" />
+    <Compile Include="Infrastructure\Read\XmlOrdersFileReader.cs" />
+    <Compile Include="Infrastructure\Write\OrdersWriter.cs" />
+    <Compile Include="Presentation\IReportsFactory.cs" />
+    <Compile Include="Presentation\MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation\MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentation\OrderReportType.cs" />
+    <Compile Include="Presentation\ReportsFactory.cs" />
+    <Compile Include="Presentation\Reports\AllOrders.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation\Reports\AllOrders.Designer.cs">
+      <DependentUpon>AllOrders.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentation\Reports\LoadingDataReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation\Reports\LoadingDataReport.Designer.cs">
+      <DependentUpon>LoadingDataReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentation\Reports\OrdersAverage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation\Reports\OrdersAverage.Designer.cs">
+      <DependentUpon>OrdersAverage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentation\Reports\OrdersAverageForClient.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation\Reports\OrdersAverageForClient.Designer.cs">
+      <DependentUpon>OrdersAverageForClient.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentation\Reports\OrdersAmount.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation\Reports\OrdersAmount.Designer.cs">
+      <DependentUpon>OrdersAmount.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentation\Reports\OrdersAmountForClient.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation\Reports\OrdersAmountForClient.Designer.cs">
+      <DependentUpon>OrdersAmountForClient.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentation\Reports\OrdersForClient.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation\Reports\OrdersForClient.Designer.cs">
+      <DependentUpon>OrdersForClient.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentation\Reports\OrdersInPriceRange.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation\Reports\OrdersInPriceRange.Designer.cs">
+      <DependentUpon>OrdersInPriceRange.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentation\Reports\OrdersQuantity.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation\Reports\OrdersQuantity.Designer.cs">
+      <DependentUpon>OrdersQuantity.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentation\Reports\OrdersQuantityForClient.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation\Reports\OrdersQuantityForClient.Designer.cs">
+      <DependentUpon>OrdersQuantityForClient.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentation\Reports\OrdersQuantityGroupedByName.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation\Reports\OrdersQuantityGroupedByName.Designer.cs">
+      <DependentUpon>OrdersQuantityGroupedByName.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentation\Reports\OrdersQuantityGroupedByNameForClient.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation\Reports\OrdersQuantityGroupedByNameForClient.Designer.cs">
+      <DependentUpon>OrdersQuantityGroupedByNameForClient.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Presentation\MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentation\Reports\AllOrders.resx">
+      <DependentUpon>AllOrders.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentation\Reports\LoadingDataReport.resx">
+      <DependentUpon>LoadingDataReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentation\Reports\OrdersAverage.resx">
+      <DependentUpon>OrdersAverage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentation\Reports\OrdersAverageForClient.resx">
+      <DependentUpon>OrdersAverageForClient.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentation\Reports\OrdersAmount.resx">
+      <DependentUpon>OrdersAmount.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentation\Reports\OrdersAmountForClient.resx">
+      <DependentUpon>OrdersAmountForClient.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentation\Reports\OrdersForClient.resx">
+      <DependentUpon>OrdersForClient.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentation\Reports\OrdersInPriceRange.resx">
+      <DependentUpon>OrdersInPriceRange.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentation\Reports\OrdersQuantity.resx">
+      <DependentUpon>OrdersQuantity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentation\Reports\OrdersQuantityForClient.resx">
+      <DependentUpon>OrdersQuantityForClient.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentation\Reports\OrdersQuantityGroupedByName.resx">
+      <DependentUpon>OrdersQuantityGroupedByName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentation\Reports\OrdersQuantityGroupedByNameForClient.resx">
+      <DependentUpon>OrdersQuantityGroupedByNameForClient.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <None Include="packages.config" />
+    <None Include="Properties\DataSources\OrderDto.datasource" />
+    <None Include="Properties\DataSources\OrderInfoService.WinFormsApp.Core.FlatOrder.datasource" />
+    <None Include="Properties\DataSources\OrderItemDto.datasource" />
+    <None Include="Properties\DataSources\OrderQuantityByNameDto.datasource" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

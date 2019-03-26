@@ -1,0 +1,16 @@
+<orders>
+  <request>
+    <clientId>2</clientId>
+    <requestId>1</requestId>
+    <name>banana</name>
+    <quantity>15</quantity>
+    <price>15.00</price>
+  </request>
+  <order>
+    <clientId>2</clientId>
+    <requestId>1</requestId>
+    <name>banana</name>
+    <quantity>15</quantity>
+    <price>15,00</price>
+  </order>
+</orders>
