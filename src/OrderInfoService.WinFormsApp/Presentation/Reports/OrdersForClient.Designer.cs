@@ -37,20 +37,20 @@
             this.cmbClientId = new System.Windows.Forms.ComboBox();
             this.btnSave = new System.Windows.Forms.Button();
             this.dgvOrders = new System.Windows.Forms.DataGridView();
+            this.clientIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.requestIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.orderDtoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label3 = new System.Windows.Forms.Label();
             this.dgvOrderItems = new System.Windows.Forms.DataGridView();
-            this.label4 = new System.Windows.Forms.Label();
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.quantityDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.priceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.orderItemDtoBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.clientIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.requestIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.orderDtoBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.label4 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvOrders)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.orderDtoBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvOrderItems)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.orderItemDtoBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.orderDtoBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -84,6 +84,7 @@
             // 
             // cmbClientId
             // 
+            this.cmbClientId.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbClientId.FormattingEnabled = true;
             this.cmbClientId.Location = new System.Drawing.Point(12, 77);
             this.cmbClientId.Name = "cmbClientId";
@@ -131,6 +132,24 @@
             this.dgvOrders.TabIndex = 15;
             this.dgvOrders.SelectionChanged += new System.EventHandler(this.dgvOrders_SelectionChanged);
             // 
+            // clientIdDataGridViewTextBoxColumn
+            // 
+            this.clientIdDataGridViewTextBoxColumn.DataPropertyName = "ClientId";
+            this.clientIdDataGridViewTextBoxColumn.HeaderText = "ClientId";
+            this.clientIdDataGridViewTextBoxColumn.Name = "clientIdDataGridViewTextBoxColumn";
+            this.clientIdDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // requestIdDataGridViewTextBoxColumn
+            // 
+            this.requestIdDataGridViewTextBoxColumn.DataPropertyName = "RequestId";
+            this.requestIdDataGridViewTextBoxColumn.HeaderText = "RequestId";
+            this.requestIdDataGridViewTextBoxColumn.Name = "requestIdDataGridViewTextBoxColumn";
+            this.requestIdDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // orderDtoBindingSource
+            // 
+            this.orderDtoBindingSource.DataSource = typeof(OrderInfoService.WinFormsApp.OrderDto);
+            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -169,16 +188,6 @@
             this.dgvOrderItems.Size = new System.Drawing.Size(462, 296);
             this.dgvOrderItems.TabIndex = 17;
             // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label4.Location = new System.Drawing.Point(306, 101);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(129, 20);
-            this.label4.TabIndex = 18;
-            this.label4.Text = "Linie zamówienia";
-            // 
             // nameDataGridViewTextBoxColumn
             // 
             this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
@@ -204,23 +213,15 @@
             // 
             this.orderItemDtoBindingSource.DataSource = typeof(OrderInfoService.WinFormsApp.OrderItemDto);
             // 
-            // clientIdDataGridViewTextBoxColumn
+            // label4
             // 
-            this.clientIdDataGridViewTextBoxColumn.DataPropertyName = "ClientId";
-            this.clientIdDataGridViewTextBoxColumn.HeaderText = "ClientId";
-            this.clientIdDataGridViewTextBoxColumn.Name = "clientIdDataGridViewTextBoxColumn";
-            this.clientIdDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // requestIdDataGridViewTextBoxColumn
-            // 
-            this.requestIdDataGridViewTextBoxColumn.DataPropertyName = "RequestId";
-            this.requestIdDataGridViewTextBoxColumn.HeaderText = "RequestId";
-            this.requestIdDataGridViewTextBoxColumn.Name = "requestIdDataGridViewTextBoxColumn";
-            this.requestIdDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // orderDtoBindingSource
-            // 
-            this.orderDtoBindingSource.DataSource = typeof(OrderInfoService.WinFormsApp.OrderDto);
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label4.Location = new System.Drawing.Point(306, 101);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(129, 20);
+            this.label4.TabIndex = 18;
+            this.label4.Text = "Linie zamówienia";
             // 
             // OrdersForClient
             // 
@@ -240,9 +241,9 @@
             this.Text = "Raport";
             this.Load += new System.EventHandler(this.OrdersForClient_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvOrders)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.orderDtoBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvOrderItems)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.orderItemDtoBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.orderDtoBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
