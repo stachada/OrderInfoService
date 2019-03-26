@@ -53,8 +53,7 @@ namespace OrderInfoService.WinFormsApp.Infrastructure.Read
                     Status = ReaderStatus.DeserializationError;
                     return null;
                 }
-
-                //List<Order> list = new List<Order>();
+                
                 var list = new List<object>();
 
                 foreach (JToken token in jObject.SelectToken("requests"))
@@ -89,9 +88,7 @@ namespace OrderInfoService.WinFormsApp.Infrastructure.Read
                     {
                         price = ParsingHelpers.ParseDouble(token["price"].ToString());
                     }
-
-                    //var order = new Order(clientId, requestId, name, quantity, price);
-                    //list.Add(order);
+                    
                     list.Add(new
                     {
                         ClientId = clientId,
@@ -129,7 +126,7 @@ namespace OrderInfoService.WinFormsApp.Infrastructure.Read
                     }
                 }";
 
-            JsonSchema schema = JsonSchema.Parse(jsonSchema);
+            JSchema schema = JSchema.Parse(jsonSchema);
             return jObject.IsValid(schema);
         }
     }

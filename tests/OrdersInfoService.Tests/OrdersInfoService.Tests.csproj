@@ -63,6 +63,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
     <None Include="TestFiles\test-requests-no-data.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
