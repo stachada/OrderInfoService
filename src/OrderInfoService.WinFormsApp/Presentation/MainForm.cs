@@ -9,12 +9,14 @@ namespace OrderInfoService.WinFormsApp.Presentation
     {
         private readonly IOrdersInMemoryDb _orders;
         private readonly IReportsFactory _reportFactory;
+        private readonly IReportPresentersFactory _reportPresentersFactory;
 
-        public MainForm(IOrdersInMemoryDb orders, IReportsFactory reportFactory)
+        public MainForm(IOrdersInMemoryDb orders, IReportsFactory reportFactory, IReportPresentersFactory reportPresentersFactory)
         {
             InitializeComponent();
             _orders = orders;
             _reportFactory = reportFactory;
+            _reportPresentersFactory = reportPresentersFactory;
         }
 
         private void ShowForm(Form form)
@@ -22,6 +24,12 @@ namespace OrderInfoService.WinFormsApp.Presentation
             form.MdiParent = this;
             form.Show();
             form.Activate();
+        }
+
+        private void ShowForm(OrderReportType orderReportType)
+        {
+            var presenter = _reportPresentersFactory.Create(orderReportType);
+            ShowForm(presenter.View);
         }
 
         private void załadujZPlikówToolStripMenuItem_Click(object sender, EventArgs e)
@@ -72,68 +80,57 @@ namespace OrderInfoService.WinFormsApp.Presentation
 
         private void ilośćZamówieńToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var form = _reportFactory.Create(OrderReportType.OrdersQuantity);
-            ShowForm(form);
+            ShowForm(OrderReportType.OrdersQuantity);
         }
 
         private void ilośćZamówieńDlaKlientaOWskazanymIdentyfikatorzeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var form = _reportFactory.Create(OrderReportType.OrdersQuantityForClient);
-            ShowForm(form);
+            ShowForm(OrderReportType.OrdersQuantityForClient);
         }
 
         private void ącznaKwotaZamówieńToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var form = _reportFactory.Create(OrderReportType.OrdersAmount);
-            ShowForm(form);
+            ShowForm(OrderReportType.OrdersAmount);
         }
 
         private void ącznaKwoataZamówieńDlaKlientaOWskazanymIdentyfikatorzeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var form = _reportFactory.Create(OrderReportType.OrdersAmountForClient);
-            ShowForm(form);
+            ShowForm(OrderReportType.OrdersAmountForClient);
         }
 
         private void listaWszystkichZamówieńToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var form = _reportFactory.Create(OrderReportType.AllOrders);
-            ShowForm(form);
+            ShowForm(OrderReportType.AllOrders);
         }
 
         private void listaZamówieńDlaKlientOWskazanymIdentyfikatorzeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var form = _reportFactory.Create(OrderReportType.OrdersForClient);
-            ShowForm(form);
+            ShowForm(OrderReportType.OrdersForClient);
         }
 
         private void średniaWartośćZamówieniaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var form = _reportFactory.Create(OrderReportType.OrdersAverage);
-            ShowForm(form);
+            ShowForm(OrderReportType.OrdersAverage);
         }
 
         private void średniaWartośćZamówieniaDlaKlientaOWskazanymIdentyfikatorzeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var form = _reportFactory.Create(OrderReportType.OrdersAverageForClient);
-            ShowForm(form);
+            ShowForm(OrderReportType.OrdersAverageForClient);
         }
 
         private void ilośćZamówieńPogrupowanychPoNazwieToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var form = _reportFactory.Create(OrderReportType.OrdersQuantityGroupedByName);
-            ShowForm(form);
+            ShowForm(OrderReportType.OrdersQuantityGroupedByName);
         }
 
         private void ilośćZamówieńPogrupowanychPoNazwieDlaKlientaOWskazanymIdentyfikatorzeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var form = _reportFactory.Create(OrderReportType.OrdersQuantityGroupedByNameForClient);
-            ShowForm(form);
+            ShowForm(OrderReportType.OrdersQuantityGroupedByNameForClient);
         }
 
         private void zamówieniaWPodanymPrzedzialeCenowymToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var form = _reportFactory.Create(OrderReportType.OrdersInPricerange);
-            ShowForm(form);
+            ShowForm(OrderReportType.OrdersInPricerange);
         }
     }
 }
