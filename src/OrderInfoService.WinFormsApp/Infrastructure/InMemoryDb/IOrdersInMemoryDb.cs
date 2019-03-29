@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using OrderInfoService.WinFormsApp.Core;
 
 namespace OrderInfoService.WinFormsApp.Infrastructure
@@ -11,6 +12,7 @@ namespace OrderInfoService.WinFormsApp.Infrastructure
 
         void ClearDatabase();
         void LoadOrders(IList<string> paths);
+        Task LoadOrdersAsync(IList<string> paths);
         List<string> SkippedFilesInfo();
         List<string> LoadedFilesInfo();
     }

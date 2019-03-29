@@ -74,7 +74,7 @@
             this.załadujZPlikówToolStripMenuItem.Name = "załadujZPlikówToolStripMenuItem";
             this.załadujZPlikówToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
             this.załadujZPlikówToolStripMenuItem.Text = "Załaduj z plików";
-            this.załadujZPlikówToolStripMenuItem.Click += new System.EventHandler(this.załadujZPlikówToolStripMenuItem_Click);
+            this.załadujZPlikówToolStripMenuItem.Click += new System.EventHandler(async (s, e) => await this.załadujZPlikówToolStripMenuItem_Click(s, e));
             // 
             // resetujBazęDanychToolStripMenuItem
             // 

@@ -2,6 +2,8 @@
 using OrderInfoService.WinFormsApp.Infrastructure.Read;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace OrderInfoService.WinFormsApp.Infrastructure
 {
@@ -20,6 +22,13 @@ namespace OrderInfoService.WinFormsApp.Infrastructure
         public IList<Order> Orders { get; private set; }
         public IList<FlatOrder> InvalidOrders => _flatOrders.Where(fo => !fo.IsValid).ToList();
         public IList<FlatOrder> FlatOrders => _flatOrders.Where(fo => fo.IsValid).ToList();
+
+        public async Task LoadOrdersAsync(IList<string> paths)
+        {
+            await Task.Run(() => {
+                Thread.Sleep(5000);
+                LoadOrders(paths); });
+        }
 
         public void LoadOrders(IList<string> paths)
         {

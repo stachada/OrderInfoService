@@ -14,6 +14,11 @@ namespace OrderInfoService.WinFormsApp.Infrastructure.Read
             _readers = new Dictionary<string, IOrdersFileReader>();
         }
 
+        public async Task<IList<object>> ReadOrdersFromFilesAsync(IEnumerable<string> paths)
+        {
+            return await Task.Run(() => ReadOrdersFromFiles(paths));
+        }
+
         public IList<object> ReadOrdersFromFiles(IEnumerable<string> paths)
         {
             var tasks = new List<Task<IList<object>>>();

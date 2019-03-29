@@ -1,6 +1,7 @@
 ﻿using OrderInfoService.WinFormsApp.Infrastructure;
 using System;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace OrderInfoService.WinFormsApp.Presentation
@@ -32,7 +33,7 @@ namespace OrderInfoService.WinFormsApp.Presentation
             ShowForm(presenter.View);
         }
 
-        private void załadujZPlikówToolStripMenuItem_Click(object sender, EventArgs e)
+        private async Task załadujZPlikówToolStripMenuItem_Click(object sender, EventArgs e)
         {
             foreach (var childForm in MdiChildren)
                 childForm.Close();
@@ -47,11 +48,14 @@ namespace OrderInfoService.WinFormsApp.Presentation
                 var paths = ofd.FileNames.ToList();
                 try
                 {
-                    _orders.LoadOrders(paths);
+                    Application.UseWaitCursor = true;
+                    await _orders.LoadOrdersAsync(paths);
+                    Application.UseWaitCursor = false;
                 }
                 catch(Exception)
                 {
                     _orders.ClearDatabase();
+                    Application.UseWaitCursor = false;
                     MessageBox.Show("Błąd importu. Spróbuj ponownie.");
                 }
 
