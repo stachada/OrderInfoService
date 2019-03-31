@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace OrderInfoService.WinFormsApp.Presentation
 {
-    public class AllOrdersPresenter : IReportPresenter
+    public class AllOrdersPresenter : IPresenter
     {
         private readonly IAllOrdersView _view;
         private readonly IOrdersQueries _ordersQueries;
@@ -24,7 +24,6 @@ namespace OrderInfoService.WinFormsApp.Presentation
             _view.Load += OnLoad;
             _view.Save += OnSave;
             _view.SelectedOrderChanged += OnSelectedOrderChanged;
-            
         }
 
         public Form View => (Form)_view;

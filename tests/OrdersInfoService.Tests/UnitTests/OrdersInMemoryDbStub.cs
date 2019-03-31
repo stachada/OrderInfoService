@@ -2,10 +2,11 @@
 using OrderInfoService.WinFormsApp.Infrastructure;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace OrdersInfoService.Tests.UnitTests
 {
-    public class MockOrdersInMemoryDb : IOrdersInMemoryDb
+    public class OrdersInMemoryDbStub : IOrdersInMemoryDb
     {
         public IList<Order> Orders => GetOrders();
 
@@ -72,6 +73,11 @@ namespace OrdersInfoService.Tests.UnitTests
         }
 
         public List<string> LoadedFilesInfo()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task LoadOrdersAsync(IList<string> paths)
         {
             throw new NotImplementedException();
         }

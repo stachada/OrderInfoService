@@ -2,6 +2,6 @@
 {
     public interface IReportPresentersFactory
     {
-        IReportPresenter Create(OrderReportType orderReportType);
+        IPresenter Create(OrderReportType orderReportType);
     }
 }

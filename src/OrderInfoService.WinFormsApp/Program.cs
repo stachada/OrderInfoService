@@ -18,7 +18,8 @@ namespace OrderInfoService.WinFormsApp
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(Bootstrap().Resolve<MainForm>());
+            var mainPresenter = Bootstrap().Resolve<MainPresenter>();
+            Application.Run(mainPresenter.View);
         }
 
         static Autofac.IContainer Bootstrap()
@@ -34,73 +35,65 @@ namespace OrderInfoService.WinFormsApp
             builder.RegisterType<FileDialogs>().As<IFileDialogs>();
 
             // Forms
-            builder.RegisterType<MainForm>().AsSelf();
+            builder.RegisterType<MainView>().As<IMainView>();
+            builder.RegisterType<MainPresenter>().AsSelf();
 
             builder.RegisterType<AllOrdersView>().As<IAllOrdersView>();
             builder.RegisterType<AllOrdersPresenter>()
-                .Keyed<IReportPresenter>(OrderReportType.AllOrders);
+                .Keyed<IPresenter>(OrderReportType.AllOrders);
 
             builder.RegisterType<OrdersForClientView>().As<IOrdersForClientView>();
             builder.RegisterType<OrdersForClientPresenter>()
-                .Keyed<IReportPresenter>(OrderReportType.OrdersForClient);
+                .Keyed<IPresenter>(OrderReportType.OrdersForClient);
 
             builder.RegisterType<OrdersAmountView>().As<IOrdersAmountView>();
             builder.RegisterType<OrdersAmountPresenter>()
-                .Keyed<IReportPresenter>(OrderReportType.OrdersAmount);
+                .Keyed<IPresenter>(OrderReportType.OrdersAmount);
 
             builder.RegisterType<OrdersAmountForClientView>().As<IOrdersAmountForClientView>();
             builder.RegisterType<OrdersAmountForClientPresenter>()
-                .Keyed<IReportPresenter>(OrderReportType.OrdersAmountForClient);
+                .Keyed<IPresenter>(OrderReportType.OrdersAmountForClient);
 
             builder.RegisterType<OrdersAverageView>().As<IOrdersAverageView>();
             builder.RegisterType<OrdersAveragePresenter>()
-                .Keyed<IReportPresenter>(OrderReportType.OrdersAverage);
+                .Keyed<IPresenter>(OrderReportType.OrdersAverage);
 
             builder.RegisterType<OrdersAverageForClientView>().As<IOrdersAverageForClientView>();
             builder.RegisterType<OrdersAverageForClientPresenter>()
-                .Keyed<IReportPresenter>(OrderReportType.OrdersAverageForClient);
+                .Keyed<IPresenter>(OrderReportType.OrdersAverageForClient);
 
             builder.RegisterType<OrdersQuantityView>().As<IOrdersQuantityView>();
             builder.RegisterType<OrdersQuantityPresenter>()
-                .Keyed<IReportPresenter>(OrderReportType.OrdersQuantity);
+                .Keyed<IPresenter>(OrderReportType.OrdersQuantity);
 
             builder.RegisterType<OrdersQuantityForClientView>().As<IOrdersQuantityForClientView>();
             builder.RegisterType<OrdersQuantityForClientPresenter>()
-                .Keyed<IReportPresenter>(OrderReportType.OrdersQuantityForClient);
+                .Keyed<IPresenter>(OrderReportType.OrdersQuantityForClient);
 
             builder.RegisterType<OrdersInPriceRangeView>().As<IOrdersInPriceRangeView>();
             builder.RegisterType<OrdersInPriceRangePresenter>()
-                .Keyed<IReportPresenter>(OrderReportType.OrdersInPricerange);
+                .Keyed<IPresenter>(OrderReportType.OrdersInPricerange);
 
             builder.RegisterType<OrdersQuantityGroupedByNameView>().As<IOrdersQuantityGroupedByNameView>();
             builder.RegisterType<OrdersQuantityGroupedByNamePresenter>()
-                .Keyed<IReportPresenter>(OrderReportType.OrdersQuantityGroupedByName);
+                .Keyed<IPresenter>(OrderReportType.OrdersQuantityGroupedByName);
 
             builder.RegisterType<OrdersQuantityGroupedByNameForClientView>().As<IOrdersQuantityGroupedByNameForClientView>();
             builder.RegisterType<OrdersQuantityGroupedByNameForClientPresenter>()
-                .Keyed<IReportPresenter>(OrderReportType.OrdersQuantityGroupedByNameForClient);
+                .Keyed<IPresenter>(OrderReportType.OrdersQuantityGroupedByNameForClient);
 
-            builder.RegisterType<LoadingDataReport>()
-                .Keyed<Form>(OrderReportType.LoadingData);
-
-            builder.RegisterType<ReportsFactory>().As<IReportsFactory>();
+            builder.RegisterType<LoadingDataReportView>().As<ILoadingDataReportView>();
+            builder.RegisterType<LoadingDataReportPresenter>()
+                .Keyed<IPresenter>(OrderReportType.LoadingData);
+            
             builder.RegisterType<ReportPresentersFactory>().As<IReportPresentersFactory>();
-
-            builder.Register<Func<OrderReportType, Form>>(c =>
+            
+            builder.Register<Func<OrderReportType, IPresenter>>(c =>
             {
                 var ctx = c.Resolve<IComponentContext>();
                 return t =>
                 {
-                    return ctx.ResolveKeyed<Form>(t);
-                };
-            });
-
-            builder.Register<Func<OrderReportType, IReportPresenter>>(c =>
-            {
-                var ctx = c.Resolve<IComponentContext>();
-                return t =>
-                {
-                    return ctx.ResolveKeyed<IReportPresenter>(t);
+                    return ctx.ResolveKeyed<IPresenter>(t);
                 };
             });
 

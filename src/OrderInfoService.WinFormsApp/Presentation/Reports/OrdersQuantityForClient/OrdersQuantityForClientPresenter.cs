@@ -6,7 +6,7 @@ using System.Windows.Forms;
 
 namespace OrderInfoService.WinFormsApp.Presentation
 {
-    public class OrdersQuantityForClientPresenter : IReportPresenter
+    public class OrdersQuantityForClientPresenter : IPresenter
     {
         private readonly IOrdersQuantityForClientView _view;
         private readonly IOrdersQueries _ordersQueries;
@@ -24,7 +24,7 @@ namespace OrderInfoService.WinFormsApp.Presentation
             _view.Generate += OnGenerate;
         }
 
-        public Form View => throw new NotImplementedException();
+        public Form View => (Form)_view;
 
         private void OnLoad(object sender, EventArgs e)
         {

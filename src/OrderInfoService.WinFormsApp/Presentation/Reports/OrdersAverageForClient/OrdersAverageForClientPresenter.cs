@@ -6,7 +6,7 @@ using System.Windows.Forms;
 
 namespace OrderInfoService.WinFormsApp.Presentation
 {
-    public class OrdersAverageForClientPresenter : IReportPresenter
+    public class OrdersAverageForClientPresenter : IPresenter
     {
         private readonly IOrdersAverageForClientView _view;
         private readonly IOrdersQueries _ordersQueries;

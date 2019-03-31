@@ -1,6 +1,5 @@
 ﻿using Newtonsoft.Json.Linq;
 using Newtonsoft.Json.Schema;
-using OrderInfoService.WinFormsApp.Core;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
@@ -34,9 +33,10 @@ namespace OrderInfoService.WinFormsApp.Infrastructure.Read
                 Status = ReaderStatus.FileError;
                 return null;
             }
+
+            JObject jObject = null;
             using (StreamReader reader = new StreamReader(FilePath))
             {
-                JObject jObject = null;
                 try
                 {
                     string json = reader.ReadToEnd(); // can be async
@@ -47,61 +47,60 @@ namespace OrderInfoService.WinFormsApp.Infrastructure.Read
                     Status = ReaderStatus.DeserializationError;
                     return null;
                 }
-
-                if (!CheckSchema(jObject))
-                {
-                    Status = ReaderStatus.DeserializationError;
-                    return null;
-                }
-                
-                var list = new List<object>();
-
-                foreach (JToken token in jObject.SelectToken("requests"))
-                {
-                    string clientId = null;
-
-                    if (token["clientId"] != null)
-                    {
-                        clientId = token["clientId"].ToString();
-                    }
-
-                    long? requestId = null;
-                    if (token["requestId"] != null)
-                    {
-                        requestId = ParsingHelpers.ParseLong(token["requestId"].ToString());
-                    }
-
-                    string name = null;
-                    if (token["name"] != null)
-                    {
-                        name = token["name"].ToString();
-                    }
-
-                    int? quantity = null;
-                    if (token["quantity"] != null)
-                    {
-                        quantity = ParsingHelpers.ParseInt(token["quantity"].ToString());
-                    }
-
-                    double? price = null;
-                    if (token["price"] != null)
-                    {
-                        price = ParsingHelpers.ParseDouble(token["price"].ToString());
-                    }
-                    
-                    list.Add(new
-                    {
-                        ClientId = clientId,
-                        RequestId = requestId,
-                        Name = name,
-                        Quantity = quantity,
-                        Price = price
-                    });
-                }
-
-                Status = ReaderStatus.Completed;
-                return list;
             }
+
+            if (!CheckSchema(jObject))
+            {
+                Status = ReaderStatus.DeserializationError;
+                return null;
+            }
+
+            var list = new List<object>();
+
+            foreach (JToken token in jObject.SelectToken("requests"))
+            {
+                string clientId = null;
+
+                if (token["clientId"] != null)
+                {
+                    clientId = token["clientId"].ToString();
+                }
+
+                long? requestId = null;
+                if (token["requestId"] != null)
+                {
+                    requestId = ParsingHelpers.ParseLong(token["requestId"].ToString());
+                }
+
+                string name = null;
+                if (token["name"] != null)
+                {
+                    name = token["name"].ToString();
+                }
+
+                int? quantity = null;
+                if (token["quantity"] != null)
+                {
+                    quantity = ParsingHelpers.ParseInt(token["quantity"].ToString());
+                }
+
+                double? price = null;
+                if (token["price"] != null)
+                {
+                    price = ParsingHelpers.ParseDouble(token["price"].ToString());
+                }
+
+                list.Add(new
+                {
+                    ClientId = clientId,
+                    RequestId = requestId,
+                    Name = name,
+                    Quantity = quantity,
+                    Price = price
+                });
+            }
+            Status = ReaderStatus.Completed;
+            return list;
         }
 
         private bool CheckSchema(JObject jObject)

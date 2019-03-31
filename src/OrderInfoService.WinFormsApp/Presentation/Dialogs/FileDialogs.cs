@@ -11,7 +11,19 @@ namespace OrderInfoService.WinFormsApp.Presentation
     {
         public List<string> LoadDatabaseFiles()
         {
-            throw new NotImplementedException();
+            List<string> paths = new List<string>();
+            using (OpenFileDialog ofd = new OpenFileDialog())
+            { 
+                ofd.Multiselect = true;
+                ofd.Filter = "Wszystkie|*.json;*.csv;*.xml|csv|*.csv|json|*.json|xml|*.xml";
+                ofd.Title = "Wybierz pliki z zamówieniami do zaimportowania";
+
+                if (ofd.ShowDialog() == DialogResult.OK)
+                {
+                    paths = ofd.FileNames.ToList();
+                }
+            }
+            return paths;
         }
 
         public string SaveCsvFiles()

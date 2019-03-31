@@ -83,9 +83,7 @@ namespace OrderInfoService.WinFormsApp.Infrastructure.Read
                     {
                         price = ParsingHelpers.ParseDouble(row[columns.IndexOf("PRICE")]);
                     }
-
-                    //var order = new Order(clientId, requestId, name, quantity, price);
-                    //list.Add(order);
+                    
                     list.Add(new
                     {
                         ClientId = clientId,

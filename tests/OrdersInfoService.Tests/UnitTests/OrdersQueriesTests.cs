@@ -16,7 +16,7 @@ namespace OrdersInfoService.Tests.UnitTests
 
         public OrdersQueriesTests()
         {
-            _ordersQueries = new OrdersQueries(new MockOrdersInMemoryDb());
+            _ordersQueries = new OrdersQueries(new OrdersInMemoryDbStub());
         }
 
         [Test]

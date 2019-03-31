@@ -2,8 +2,8 @@
 
 namespace OrderInfoService.WinFormsApp.Presentation
 {
-    public interface IReportsFactory
+    public interface IPresenter
     {
-        Form Create(OrderReportType orderReportType);
+        Form View { get; }
     }
 }

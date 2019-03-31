@@ -53,7 +53,7 @@
     <Compile Include="IntegrationTests\OrdersReaderTests.cs" />
     <Compile Include="IntegrationTests\XmlOrdersFileReaderTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UnitTests\MockOrdersInMemoryDb.cs" />
+    <Compile Include="UnitTests\OrdersInMemoryDbStub.cs" />
     <Compile Include="UnitTests\OrdersQueriesTests.cs" />
   </ItemGroup>
   <ItemGroup>

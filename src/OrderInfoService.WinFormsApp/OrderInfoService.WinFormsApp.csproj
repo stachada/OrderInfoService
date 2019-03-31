@@ -87,17 +87,19 @@
     <Compile Include="Infrastructure\Write\OrdersWriter.cs" />
     <Compile Include="Presentation\Dialogs\FileDialogs.cs" />
     <Compile Include="Presentation\Dialogs\IFileDialogs.cs" />
+    <Compile Include="Presentation\IMainFormView.cs" />
+    <Compile Include="Presentation\MainPresenter.cs" />
     <Compile Include="Presentation\Reports\IReportPresenterFactory.cs" />
-    <Compile Include="Presentation\Reports\IReportsFactory.cs" />
-    <Compile Include="Presentation\MainForm.cs">
+    <Compile Include="Presentation\MainView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Presentation\MainForm.Designer.cs">
-      <DependentUpon>MainForm.cs</DependentUpon>
+    <Compile Include="Presentation\MainView.Designer.cs">
+      <DependentUpon>MainView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Presentation\Reports\LoadingDataReport\ILoadingDataReportView.cs" />
+    <Compile Include="Presentation\Reports\LoadingDataReport\LoadingDataReportPresenter.cs" />
     <Compile Include="Presentation\Reports\OrderReportType.cs" />
     <Compile Include="Presentation\Reports\ReportPresentersFactory.cs" />
-    <Compile Include="Presentation\Reports\ReportsFactory.cs" />
     <Compile Include="Presentation\Reports\AllOrders\AllOrdersView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -107,12 +109,12 @@
     <Compile Include="Presentation\Reports\AllOrders\AllOrdersPresenter.cs" />
     <Compile Include="Presentation\Reports\AllOrders\IAllOrdersView.cs" />
     <Compile Include="Presentation\Reports\IReportView.cs" />
-    <Compile Include="Presentation\Reports\IReportPresenter.cs" />
-    <Compile Include="Presentation\Reports\LoadingDataReport\LoadingDataReport.cs">
+    <Compile Include="Presentation\IPresenter.cs" />
+    <Compile Include="Presentation\Reports\LoadingDataReport\LoadingDataReportView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Presentation\Reports\LoadingDataReport\LoadingDataReport.Designer.cs">
-      <DependentUpon>LoadingDataReport.cs</DependentUpon>
+    <Compile Include="Presentation\Reports\LoadingDataReport\LoadingDataReportView.Designer.cs">
+      <DependentUpon>LoadingDataReportView.cs</DependentUpon>
     </Compile>
     <Compile Include="Presentation\Reports\OrdersAmountForClient\IOrdersAmountForClientView.cs" />
     <Compile Include="Presentation\Reports\OrdersAmountForClient\OrdersAmountForClientPresenter.cs" />
@@ -194,17 +196,18 @@
     <Compile Include="Presentation\Reports\OrdersQuantityGroupedByNameForClient\OrdersQuantityGroupedByNameForClientView.Designer.cs">
       <DependentUpon>OrdersQuantityGroupedByNameForClientView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Presentation\Reports\SelectedOrderChangedEventArgs.cs" />
+    <Compile Include="Presentation\EventArgs\SelectedOrderChangedEventArgs.cs" />
+    <Compile Include="Presentation\EventArgs\ShowReportEventArgs.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Presentation\MainForm.resx">
-      <DependentUpon>MainForm.cs</DependentUpon>
+    <EmbeddedResource Include="Presentation\MainView.resx">
+      <DependentUpon>MainView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation\Reports\AllOrders\AllOrdersView.resx">
       <DependentUpon>AllOrdersView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Presentation\Reports\LoadingDataReport\LoadingDataReport.resx">
-      <DependentUpon>LoadingDataReport.cs</DependentUpon>
+    <EmbeddedResource Include="Presentation\Reports\LoadingDataReport\LoadingDataReportView.resx">
+      <DependentUpon>LoadingDataReportView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation\Reports\OrdersAverage\OrdersAverageView.resx">
       <DependentUpon>OrdersAverageView.cs</DependentUpon>

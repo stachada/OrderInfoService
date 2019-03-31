@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace OrderInfoService.WinFormsApp.Presentation
 {
-    public class OrdersForClientPresenter : IReportPresenter
+    public class OrdersForClientPresenter : IPresenter
     {
         private readonly IOrdersForClientView _view;
         private readonly IOrdersQueries _ordersQueries;

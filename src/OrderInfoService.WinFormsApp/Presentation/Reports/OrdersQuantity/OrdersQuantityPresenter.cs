@@ -6,7 +6,7 @@ using System.Windows.Forms;
 
 namespace OrderInfoService.WinFormsApp.Presentation
 {
-    public class OrdersQuantityPresenter : IReportPresenter
+    public class OrdersQuantityPresenter : IPresenter
     {
         private readonly IOrdersQuantityView _view;
         private readonly IOrdersQueries _ordersQueries;

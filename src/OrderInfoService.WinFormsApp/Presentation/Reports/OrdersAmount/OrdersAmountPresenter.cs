@@ -6,7 +6,7 @@ using OrderInfoService.WinFormsApp.Infrastructure.Write;
 
 namespace OrderInfoService.WinFormsApp.Presentation
 {
-    public class OrdersAmountPresenter : IReportPresenter
+    public class OrdersAmountPresenter : IPresenter
     {
         private readonly IOrdersAmountView _view;
         private readonly IOrdersQueries _ordersQueries;

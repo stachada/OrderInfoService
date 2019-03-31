@@ -4,14 +4,14 @@ namespace OrderInfoService.WinFormsApp.Presentation
 {
     public class ReportPresentersFactory : IReportPresentersFactory
     {
-        private readonly Func<OrderReportType, IReportPresenter> _factory;
+        private readonly Func<OrderReportType, IPresenter> _factory;
 
-        public ReportPresentersFactory(Func<OrderReportType, IReportPresenter> factory)
+        public ReportPresentersFactory(Func<OrderReportType, IPresenter> factory)
         {
             _factory = factory;
         }
 
-        public IReportPresenter Create(OrderReportType orderReportType)
+        public IPresenter Create(OrderReportType orderReportType)
         {
             return _factory(orderReportType);
         }

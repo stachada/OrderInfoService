@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace OrderInfoService.WinFormsApp.Presentation
 {
-    public class OrdersQuantityGroupedByNameForClientPresenter : IReportPresenter
+    public class OrdersQuantityGroupedByNameForClientPresenter : IPresenter
     {
         private readonly IOrdersQuantityGroupedByNameForClientView _view;
         private readonly IOrdersQueries _ordersQueries;

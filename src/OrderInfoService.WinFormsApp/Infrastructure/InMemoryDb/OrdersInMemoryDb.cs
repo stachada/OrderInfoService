@@ -2,7 +2,6 @@
 using OrderInfoService.WinFormsApp.Infrastructure.Read;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading;
 using System.Threading.Tasks;
 
 namespace OrderInfoService.WinFormsApp.Infrastructure
@@ -26,7 +25,6 @@ namespace OrderInfoService.WinFormsApp.Infrastructure
         public async Task LoadOrdersAsync(IList<string> paths)
         {
             await Task.Run(() => {
-                Thread.Sleep(5000);
                 LoadOrders(paths); });
         }
 

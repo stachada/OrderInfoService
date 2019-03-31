@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace OrderInfoService.WinFormsApp.Presentation
 {
-    public class OrdersInPriceRangePresenter : IReportPresenter
+    public class OrdersInPriceRangePresenter : IPresenter
     {
         private readonly IOrdersInPriceRangeView _view;
         private readonly IOrdersQueries _ordersQueries;
@@ -41,7 +41,10 @@ namespace OrderInfoService.WinFormsApp.Presentation
             if (InputDataValid())
                 _view.CanGenerate = true;
             else
+            {
                 _view.CanGenerate = false;
+                _view.CanSave = false;
+            }
         }
 
         private void OnSelectedOrderChanged(object sender, SelectedOrderChangedEventArgs e)

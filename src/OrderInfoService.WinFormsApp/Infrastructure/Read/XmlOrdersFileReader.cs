@@ -1,5 +1,4 @@
-﻿using OrderInfoService.WinFormsApp.Core;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
 using System.Xml;
@@ -20,8 +19,7 @@ namespace OrderInfoService.WinFormsApp.Infrastructure.Read
 
         public ReaderStatus Status { get; private set; }
         public string FilePath { get; private set; }
-
-
+        
         public async Task<IList<object>> ReadOrderFileAsync()
         {
             return await Task.Run(() => ReadOrderFile());
@@ -60,8 +58,7 @@ namespace OrderInfoService.WinFormsApp.Infrastructure.Read
                 Status = ReaderStatus.DeserializationError;
                 return null;
             }
-
-            //List<Order> list = new List<Order>();
+            
             var list = new List<object>();
 
             foreach (XElement el in elements)
@@ -95,9 +92,7 @@ namespace OrderInfoService.WinFormsApp.Infrastructure.Read
                 {
                     price = ParsingHelpers.ParseDouble((string)el.Element("price"));
                 }
-
-                //var order = new Order(clientId, requestId, name, quantity, price);
-                //list.Add(order);
+                
                 list.Add(new
                 {
                     ClientId = clientId,
