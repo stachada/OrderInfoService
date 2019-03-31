@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OrderInfoService.WinFormsApp.Core;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
@@ -14,15 +15,15 @@ namespace OrderInfoService.WinFormsApp.Infrastructure.Read
             _readers = new Dictionary<string, IOrdersFileReader>();
         }
 
-        public async Task<IList<object>> ReadOrdersFromFilesAsync(IEnumerable<string> paths)
+        public async Task<IList<FlatOrder>> ReadOrdersFromFilesAsync(IEnumerable<string> paths)
         {
             return await Task.Run(() => ReadOrdersFromFiles(paths));
         }
 
-        public IList<object> ReadOrdersFromFiles(IEnumerable<string> paths)
+        public IList<FlatOrder> ReadOrdersFromFiles(IEnumerable<string> paths)
         {
-            var tasks = new List<Task<IList<object>>>();
-            var orders = new List<object>();
+            var tasks = new List<Task<IList<FlatOrder>>>();
+            var orders = new List<FlatOrder>();
             foreach (var path in paths)
             {
                 switch (Path.GetExtension(path))
@@ -46,7 +47,7 @@ namespace OrderInfoService.WinFormsApp.Infrastructure.Read
                         tasks.Add(Task.Run(() => csvReader.ReadOrderFileAsync()));
                         break;
                     default:
-                        throw new Exception("Wrong file extension.");
+                        throw new FileNotFoundException("Wrong file extension.");
                 }
             }
 
@@ -56,9 +57,9 @@ namespace OrderInfoService.WinFormsApp.Infrastructure.Read
             {
                 continuation.Wait();
             }
-            catch (AggregateException ex)
+            catch (AggregateException)
             {
-                throw ex;
+                throw;
             }
 
             if (continuation.Status == TaskStatus.RanToCompletion)

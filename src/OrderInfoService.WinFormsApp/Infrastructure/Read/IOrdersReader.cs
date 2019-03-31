@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using OrderInfoService.WinFormsApp.Core;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace OrderInfoService.WinFormsApp.Infrastructure.Read
@@ -7,8 +8,8 @@ namespace OrderInfoService.WinFormsApp.Infrastructure.Read
     {
         List<string> GetLoadedFilesInfo();
         List<string> GetSkippedFilesInfo();
-        IList<object> ReadOrdersFromFiles(IEnumerable<string> paths);
-        Task<IList<object>> ReadOrdersFromFilesAsync(IEnumerable<string> paths);
+        IList<FlatOrder> ReadOrdersFromFiles(IEnumerable<string> paths);
+        Task<IList<FlatOrder>> ReadOrdersFromFilesAsync(IEnumerable<string> paths);
         void Reset();
     }
 }

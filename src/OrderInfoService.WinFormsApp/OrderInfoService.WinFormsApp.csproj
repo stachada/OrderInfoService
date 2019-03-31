@@ -64,13 +64,11 @@
     <Compile Include="App\Dtos\OrderDto.cs" />
     <Compile Include="App\Dtos\OrderItemDto.cs" />
     <Compile Include="App\Dtos\OrderQuantityByNameDto.cs" />
-    <Compile Include="App\Dtos\ParentOrderDto.cs" />
     <Compile Include="Core\Entities\FlatOrder.cs" />
     <Compile Include="Core\Entities\OrderItem.cs" />
     <Compile Include="Core\Interfaces\IOrdersQueries.cs" />
     <Compile Include="App\OrdersQueries.cs" />
     <Compile Include="Core\Entities\Order.cs" />
-    <Compile Include="Infrastructure\Helpers\CastingHelpers.cs" />
     <Compile Include="Infrastructure\Helpers\OrderConverters.cs" />
     <Compile Include="Infrastructure\Helpers\ParsingHelpers.cs" />
     <Compile Include="Infrastructure\Helpers\PropertyComparer.cs" />

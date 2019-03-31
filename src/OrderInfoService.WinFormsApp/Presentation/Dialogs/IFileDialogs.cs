@@ -4,7 +4,7 @@ namespace OrderInfoService.WinFormsApp.Presentation
 {
     public interface IFileDialogs
     {
-        List<string> LoadDatabaseFiles();
-        string SaveCsvFiles();
+        List<string> LoadFilesDialog();
+        string SaveFileDialog(string defaultFileName);
     }
 }

@@ -1,9 +1,5 @@
 ﻿using OrderInfoService.WinFormsApp.Infrastructure;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace OrderInfoService.WinFormsApp.Presentation
 {
@@ -17,5 +13,6 @@ namespace OrderInfoService.WinFormsApp.Presentation
         event EventHandler Generate;
         event EventHandler InputDataChanged;
         bool CanGenerate { set; }
+        string ValidationError { set; }
     }
 }

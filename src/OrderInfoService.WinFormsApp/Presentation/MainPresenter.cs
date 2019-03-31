@@ -55,7 +55,7 @@ namespace OrderInfoService.WinFormsApp.Presentation
         {
             _view.CloseChildForms();
 
-            var paths = _fileDialogs.LoadDatabaseFiles();
+            var paths = _fileDialogs.LoadFilesDialog();
             if (paths.Count == 0)
                 return;
 

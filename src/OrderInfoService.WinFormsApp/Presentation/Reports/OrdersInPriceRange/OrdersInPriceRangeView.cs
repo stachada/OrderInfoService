@@ -51,6 +51,15 @@ namespace OrderInfoService.WinFormsApp.Presentation
             }
         }
 
+        public string ValidationError
+        {
+            set
+            {
+                if (lblValidationError.Text != value)
+                    lblValidationError.Text = value;
+            }
+        }
+
         public event EventHandler<SelectedOrderChangedEventArgs> SelectedOrderChanged;
 
         private void dgvOrders_SelectionChanged(object sender, EventArgs e)

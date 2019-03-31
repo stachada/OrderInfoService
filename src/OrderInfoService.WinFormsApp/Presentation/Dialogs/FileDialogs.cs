@@ -9,7 +9,7 @@ namespace OrderInfoService.WinFormsApp.Presentation
 {
     public class FileDialogs : IFileDialogs
     {
-        public List<string> LoadDatabaseFiles()
+        public List<string> LoadFilesDialog()
         {
             List<string> paths = new List<string>();
             using (OpenFileDialog ofd = new OpenFileDialog())
@@ -26,13 +26,13 @@ namespace OrderInfoService.WinFormsApp.Presentation
             return paths;
         }
 
-        public string SaveCsvFiles()
+        public string SaveFileDialog(string defaultFileName)
         {
             string path = string.Empty;
             using (SaveFileDialog sfd = new SaveFileDialog())
             {
                 sfd.Filter = "csv|*.csv";
-                sfd.FileName = "Lista_wszystkich_zamowien";
+                sfd.FileName = defaultFileName;
 
                 if (sfd.ShowDialog() == DialogResult.OK)
                 {

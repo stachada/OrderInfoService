@@ -2,6 +2,7 @@
 using OrderInfoService.WinFormsApp.Infrastructure.Write;
 using System;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace OrderInfoService.WinFormsApp.Presentation
@@ -20,7 +21,7 @@ namespace OrderInfoService.WinFormsApp.Presentation
             _fileDialogs = fileDialogs;
 
             _view.Load += OnLoad;
-            _view.Save += OnSave;
+            _view.Save += new EventHandler(async (s, e) => await OnSaveAsync(s, e));
         }
 
         public Form View => (Form)_view;
@@ -32,9 +33,9 @@ namespace OrderInfoService.WinFormsApp.Presentation
             _view.CanSave = true;
         }
 
-        private void OnSave(object sender, EventArgs e)
+        private async Task OnSaveAsync(object sender, EventArgs e)
         {
-            var path = _fileDialogs.SaveCsvFiles();
+            var path = _fileDialogs.SaveFileDialog("Ilosc_zamowien");
             if (path == "" || path == string.Empty)
             {
                 return;
@@ -45,10 +46,13 @@ namespace OrderInfoService.WinFormsApp.Presentation
                     }.ToList();
             try
             {
-                OrdersWriter.SaveToCsv(records, path);
+                Application.UseWaitCursor = true;
+                await OrdersWriter.SaveToCsvAsync(records, path);
+                Application.UseWaitCursor = false;
             }
             catch (Exception)
             {
+                Application.UseWaitCursor = false;
                 MessageBox.Show("Błąd w trakcie zapisu. Spróbuj ponownie.");
             }
         }

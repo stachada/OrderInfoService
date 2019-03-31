@@ -22,12 +22,12 @@ namespace OrderInfoService.WinFormsApp.Infrastructure.Read
         public ReaderStatus Status { get; private set; }
         public string FilePath { get; private set; }
 
-        public async Task<IList<object>> ReadOrderFileAsync()
+        public async Task<IList<FlatOrder>> ReadOrderFileAsync()
         {
             return await Task.Run(() => ReadOrderFile());
         }
 
-        public IList<object> ReadOrderFile()
+        public IList<FlatOrder> ReadOrderFile()
         {
             if (Status == ReaderStatus.FileError)
                 return null;
@@ -47,8 +47,7 @@ namespace OrderInfoService.WinFormsApp.Infrastructure.Read
                     return null;
                 }
 
-                //var list = new List<Order>();
-                var list = new List<object>();
+                var list = new List<FlatOrder>();
 
                 while (!reader.EndOfStream)
                 {
@@ -83,15 +82,8 @@ namespace OrderInfoService.WinFormsApp.Infrastructure.Read
                     {
                         price = ParsingHelpers.ParseDouble(row[columns.IndexOf("PRICE")]);
                     }
-                    
-                    list.Add(new
-                    {
-                        ClientId = clientId,
-                        RequestId = requestId,
-                        Name = name,
-                        Quantity = quantity,
-                        Price = price
-                    });
+
+                    list.Add(new FlatOrder(clientId, requestId, name, quantity, price));
                 }
 
                 Status = ReaderStatus.Completed;

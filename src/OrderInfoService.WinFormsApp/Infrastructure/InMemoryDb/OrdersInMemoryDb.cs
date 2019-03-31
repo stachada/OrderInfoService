@@ -30,19 +30,7 @@ namespace OrderInfoService.WinFormsApp.Infrastructure
 
         public void LoadOrders(IList<string> paths)
         {
-            var rawData = _reader.ReadOrdersFromFiles(paths);
-            // anonymous type
-            var targetType = new { ClientId = "", RequestId = new long?(0), Name = "", Quantity = new int?(0), Price = new double?(0) };
-
-            var newFlatOrders = rawData
-                .Select(o =>
-                {
-                    var obj = CastingHelpers.Cast(o, targetType);
-                    var flatOrder = new FlatOrder(obj.ClientId, obj.RequestId, obj.Name, obj.Quantity, obj.Price);
-                    return flatOrder;
-                }).ToList();
-
-            _flatOrders.AddRange(newFlatOrders);
+            _flatOrders.AddRange(_reader.ReadOrdersFromFiles(paths));
             
             Orders = _flatOrders
                 .GroupBy(o => new { o.ClientId, o.RequestId })

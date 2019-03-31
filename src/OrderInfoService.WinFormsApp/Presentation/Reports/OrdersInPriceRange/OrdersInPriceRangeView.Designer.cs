@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.txtMinPrice = new System.Windows.Forms.TextBox();
             this.txtMaxPrice = new System.Windows.Forms.TextBox();
@@ -39,20 +39,21 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.btnGenerate = new System.Windows.Forms.Button();
             this.dgvOrders = new System.Windows.Forms.DataGridView();
-            this.clientIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.requestIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.orderDtoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label4 = new System.Windows.Forms.Label();
             this.dgvOrderItems = new System.Windows.Forms.DataGridView();
+            this.label5 = new System.Windows.Forms.Label();
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.quantityDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.priceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.orderItemDtoBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.label5 = new System.Windows.Forms.Label();
+            this.clientIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.requestIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.orderDtoBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.lblValidationError = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvOrders)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.orderDtoBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvOrderItems)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.orderItemDtoBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.orderDtoBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -131,15 +132,15 @@
             this.clientIdDataGridViewTextBoxColumn,
             this.requestIdDataGridViewTextBoxColumn});
             this.dgvOrders.DataSource = this.orderDtoBindingSource;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.NullValue = "###ERROR###";
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvOrders.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.NullValue = "###ERROR###";
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvOrders.DefaultCellStyle = dataGridViewCellStyle1;
             this.dgvOrders.Location = new System.Drawing.Point(13, 141);
             this.dgvOrders.MultiSelect = false;
             this.dgvOrders.Name = "dgvOrders";
@@ -148,24 +149,6 @@
             this.dgvOrders.Size = new System.Drawing.Size(286, 279);
             this.dgvOrders.TabIndex = 12;
             this.dgvOrders.SelectionChanged += new System.EventHandler(this.dgvOrders_SelectionChanged);
-            // 
-            // clientIdDataGridViewTextBoxColumn
-            // 
-            this.clientIdDataGridViewTextBoxColumn.DataPropertyName = "ClientId";
-            this.clientIdDataGridViewTextBoxColumn.HeaderText = "ClientId";
-            this.clientIdDataGridViewTextBoxColumn.Name = "clientIdDataGridViewTextBoxColumn";
-            this.clientIdDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // requestIdDataGridViewTextBoxColumn
-            // 
-            this.requestIdDataGridViewTextBoxColumn.DataPropertyName = "RequestId";
-            this.requestIdDataGridViewTextBoxColumn.HeaderText = "RequestId";
-            this.requestIdDataGridViewTextBoxColumn.Name = "requestIdDataGridViewTextBoxColumn";
-            this.requestIdDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // orderDtoBindingSource
-            // 
-            this.orderDtoBindingSource.DataSource = typeof(OrderInfoService.WinFormsApp.OrderDto);
             // 
             // label4
             // 
@@ -191,15 +174,15 @@
             this.quantityDataGridViewTextBoxColumn,
             this.priceDataGridViewTextBoxColumn});
             this.dgvOrderItems.DataSource = this.orderItemDtoBindingSource;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle4.NullValue = "###ERROR###";
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvOrderItems.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.NullValue = "###ERROR###";
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvOrderItems.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgvOrderItems.Location = new System.Drawing.Point(306, 141);
             this.dgvOrderItems.MultiSelect = false;
             this.dgvOrderItems.Name = "dgvOrderItems";
@@ -207,6 +190,16 @@
             this.dgvOrderItems.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvOrderItems.Size = new System.Drawing.Size(466, 279);
             this.dgvOrderItems.TabIndex = 14;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label5.Location = new System.Drawing.Point(305, 118);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(129, 20);
+            this.label5.TabIndex = 15;
+            this.label5.Text = "Linie zamówienia";
             // 
             // nameDataGridViewTextBoxColumn
             // 
@@ -233,21 +226,38 @@
             // 
             this.orderItemDtoBindingSource.DataSource = typeof(OrderInfoService.WinFormsApp.OrderItemDto);
             // 
-            // label5
+            // clientIdDataGridViewTextBoxColumn
             // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label5.Location = new System.Drawing.Point(305, 118);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(129, 20);
-            this.label5.TabIndex = 15;
-            this.label5.Text = "Linie zamówienia";
+            this.clientIdDataGridViewTextBoxColumn.DataPropertyName = "ClientId";
+            this.clientIdDataGridViewTextBoxColumn.HeaderText = "ClientId";
+            this.clientIdDataGridViewTextBoxColumn.Name = "clientIdDataGridViewTextBoxColumn";
+            this.clientIdDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // requestIdDataGridViewTextBoxColumn
+            // 
+            this.requestIdDataGridViewTextBoxColumn.DataPropertyName = "RequestId";
+            this.requestIdDataGridViewTextBoxColumn.HeaderText = "RequestId";
+            this.requestIdDataGridViewTextBoxColumn.Name = "requestIdDataGridViewTextBoxColumn";
+            this.requestIdDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // orderDtoBindingSource
+            // 
+            this.orderDtoBindingSource.DataSource = typeof(OrderInfoService.WinFormsApp.OrderDto);
+            // 
+            // lblValidationError
+            // 
+            this.lblValidationError.AutoSize = true;
+            this.lblValidationError.Location = new System.Drawing.Point(339, 65);
+            this.lblValidationError.Name = "lblValidationError";
+            this.lblValidationError.Size = new System.Drawing.Size(0, 13);
+            this.lblValidationError.TabIndex = 16;
             // 
             // OrdersInPriceRangeView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 461);
+            this.Controls.Add(this.lblValidationError);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.dgvOrderItems);
             this.Controls.Add(this.label4);
@@ -262,9 +272,9 @@
             this.Name = "OrdersInPriceRangeView";
             this.Text = "Raport";
             ((System.ComponentModel.ISupportInitialize)(this.dgvOrders)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.orderDtoBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvOrderItems)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.orderItemDtoBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.orderDtoBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -290,5 +300,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn quantityDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn priceDataGridViewTextBoxColumn;
         private System.Windows.Forms.BindingSource orderItemDtoBindingSource;
+        private System.Windows.Forms.Label lblValidationError;
     }
 }
